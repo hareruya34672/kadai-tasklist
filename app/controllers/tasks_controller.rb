@@ -4,12 +4,12 @@ class TasksController < ApplicationController
   
   def index
     if logged_in?
-      @tasks = current_user.tasks.all.page(params[:page])
+      @tasks = Task.all.page(params[:page])
     end
   end
 
   def show
-    @task = current_user.tasks.find(params[:id])
+    @task = Task.find(params[:id])
   end
 
   def new
@@ -29,11 +29,11 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = current_user.tasks.find(params[:id])
+    @task = Task.find(params[:id])
   end
 
   def update
-    @task = current_user.tasks.find(params[:id])
+    @task = Task.find(params[:id])
 
     if @task.update(task_params)
       flash[:success] = 'Task は正常に更新されました'
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = current_user.tasks.find(params[:id])
+    @task = Task.find(params[:id])
     @task.destroy
 
     flash[:success] = 'Task は正常に削除されました'
