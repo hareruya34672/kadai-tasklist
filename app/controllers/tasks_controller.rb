@@ -3,9 +3,7 @@ class TasksController < ApplicationController
   before_action :correct_user, only:  [ :show, :edit, :update, :destroy]
   
   def index
-    if logged_in?
-      @tasks = current_user.tasks.all.page(params[:page])
-    end
+    @tasks = current_user.tasks.page(params[:page])
   end
 
   def show
